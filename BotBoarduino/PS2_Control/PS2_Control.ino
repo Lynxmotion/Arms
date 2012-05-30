@@ -93,6 +93,27 @@ void setup()
   Serial.begin(115200);
 #endif
 
+  Base.attach(Base_pin);
+  Shldr.attach(Shoulder_pin);
+  Elb.attach(Elbow_pin);
+  Wrist.attach(Wrist_pin);
+  Gripper.attach(Gripper_pin);
+  WristR.attach(WristR_pin);
+
+  pinMode(7, INPUT);
+  if(!digitalRead(7))
+  {
+    Base.write(90);
+    Shldr.write(90);
+    Elb.write(90);
+    Wrist.write(90);
+    Gripper.write(90);
+    WristR.write(90);
+    delay(2000);
+    while(digitalRead(7));
+  }
+    
+
   error = ps2x.config_gamepad(CLK,CMD,ATT,DAT, true, true);   //setup pins and settings:  GamePad(clock, command, attention, data, Pressures?, Rumble?) check for error
   
 #ifdef DEBUG
@@ -122,13 +143,6 @@ void setup()
        break;
     }
 #endif
-
-Base.attach(Base_pin);
-Shldr.attach(Shoulder_pin);
-Elb.attach(Elbow_pin);
-Wrist.attach(Wrist_pin);
-Gripper.attach(Gripper_pin);
-WristR.attach(WristR_pin);
 }
 
 int Arm(float x, float y, float z, int g, float wa, int wr) //Here's all the Inverse Kinematics to control the arm
