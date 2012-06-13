@@ -6,13 +6,13 @@
 //comment to disable the Force Sensitive Resister on the gripper
 //#define FSRG
 
+//FSRG pin Must be analog!!
+#define FSRG_pin A1
+
 //Select which arm by uncommenting the corresponding line
 //#define AL5A
 //#define AL5B
 #define AL5D
-
-//FSRG pin Must be analog!!
-#define FSRG_pin A1
 
 //uncomment for digital servos in the Shoulder and Elbow
 //that use a range of 900ms to 2100ms
@@ -93,27 +93,6 @@ void setup()
   Serial.begin(115200);
 #endif
 
-  Base.attach(Base_pin);
-  Shldr.attach(Shoulder_pin);
-  Elb.attach(Elbow_pin);
-  Wrist.attach(Wrist_pin);
-  Gripper.attach(Gripper_pin);
-  WristR.attach(WristR_pin);
-
-  pinMode(7, INPUT);
-  if(!digitalRead(7))
-  {
-    Base.write(90);
-    Shldr.write(90);
-    Elb.write(90);
-    Wrist.write(90);
-    Gripper.write(90);
-    WristR.write(90);
-    delay(2000);
-    while(digitalRead(7));
-  }
-    
-
   error = ps2x.config_gamepad(CLK,CMD,ATT,DAT, true, true);   //setup pins and settings:  GamePad(clock, command, attention, data, Pressures?, Rumble?) check for error
   
 #ifdef DEBUG
@@ -143,6 +122,13 @@ void setup()
        break;
     }
 #endif
+
+Base.attach(Base_pin);
+Shldr.attach(Shoulder_pin);
+Elb.attach(Elbow_pin);
+Wrist.attach(Wrist_pin);
+Gripper.attach(Gripper_pin);
+WristR.attach(WristR_pin);
 }
 
 int Arm(float x, float y, float z, int g, float wa, int wr) //Here's all the Inverse Kinematics to control the arm
@@ -241,6 +227,34 @@ void loop()
     #else
     tmpg = max(G - 5*Speed, 10);
     #endif
+  }
+  
+  if(ps2x.ButtonPressed(PSB_BLUE))
+  {
+    int pos = Gripper.readMicroseconds();
+    pos -= pos % 10;
+    while(pos != 1500)
+    {
+      pos += ((pos - 1500 > 0)? -10 : 10);
+      Gripper.writeMicroseconds(pos);
+      delay(25);
+    }
+    tmpg = 90;
+    G = 90;
+  }
+  
+  if(ps2x.ButtonPressed(PSB_GREEN))
+  {
+    int pos = WristR.readMicroseconds();
+    pos -= pos % 10;
+    while(pos != 1500)
+    {
+      pos += ((pos - 1500 > 0)? -10 : 10);
+      WristR.writeMicroseconds(pos);
+      delay(25);
+    }
+    tmpwr = 90;
+    WR = 90;
   }
  
   if(ps2x.Button(PSB_L1))
