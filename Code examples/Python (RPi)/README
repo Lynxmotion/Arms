@@ -1,6 +1,7 @@
 Lynxmotion AL5 Robotic Arm Series
 
 Example code using Python for the Raspberry Pi platforms
+(also tested on Windows and it worked fine, simply change the line opening the port)
 
 You can read more about the AL5 series here:
 [EN] http://www.robotshop.com/blog/en/lynxmotion-robotic-arms-15845
