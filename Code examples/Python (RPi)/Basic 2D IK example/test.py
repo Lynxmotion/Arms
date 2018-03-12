@@ -81,7 +81,7 @@ while cont:
 		motors_SEWBZWrG = (defaultTargetShoulder, defaultTargetElbow, defualtTargetWA, defaultTargetZ, defaultTargetG, defaultTargetWR)
 	
 	# Move motors
-	errorValue = al5_moveMotors(motors_SEWBZWrG, sp)
+	errorValue = al5_moveMotors(motors_SEWBZWrG, speed_SEWBZWrG, sp)
 	
 	# Quit? (quit on "y", continue on any other input)
 	targetQ = str(input("Quit ? (Y/N) "))

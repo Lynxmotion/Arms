@@ -104,7 +104,7 @@ def al5_2D_IK(targetXYZGWAWR):
 	
 	return (motors_SEWBZWrG)
 
-def al5_moveMotors(motors_SEWBZWrG, serial):
+def al5_moveMotors(motors_SEWBZWrG, speed_SEWBZWrG, serial):
 	
 	# Get values from angles to pulses (µs)
 	pulseShoulder = getPulseFromAngle(motors_SEWBZWrG[0])
@@ -114,12 +114,20 @@ def al5_moveMotors(motors_SEWBZWrG, serial):
 	pulseG = getPulseFromAngle(motors_SEWBZWrG[4])
 	pulseWR = getPulseFromAngle(motors_SEWBZWrG[5])
 	
+	# Get values from speeds
+	speedShoulder = speed_SEWBZWrG[0]
+	speedElbow = speed_SEWBZWrG[1]
+	speedWrist = speed_SEWBZWrG[2]
+	speedZ = speed_SEWBZWrG[3]
+	speedG = speed_SEWBZWrG[4]
+	speedWR = speed_SEWBZWrG[5]
+	
 	# Write values to SSC-32U
-	serial.write(("#0 P" + str(pulseZ) + "\r").encode())
-	serial.write(("#1 P" + str(pulseShoulder) + "\r").encode())
-	serial.write(("#2 P" + str(pulseElbow) + "\r").encode())
-	serial.write(("#3 P" + str(pulseWrist) + "\r").encode())
-	serial.write(("#4 P" + str(pulseG) + "\r").encode())
-	serial.write(("#5 P" + str(pulseWR) + "\r").encode())
+	serial.write(("#0 P" + str(pulseZ) + " S" + str(speedZ) + "\r").encode())
+	serial.write(("#1 P" + str(pulseShoulder) + " S" + str(speedShoulder) + "\r").encode())
+	serial.write(("#2 P" + str(pulseElbow) + " S" + str(speedElbow) + "\r").encode())
+	serial.write(("#3 P" + str(pulseWrist) + " S" + str(speedWrist) + "\r").encode())
+	serial.write(("#4 P" + str(pulseG) + " S" + str(speedG) + "\r").encode())
+	serial.write(("#5 P" + str(pulseWR) + " S" + str(speedWR) + "\r").encode())
 	
 	return
