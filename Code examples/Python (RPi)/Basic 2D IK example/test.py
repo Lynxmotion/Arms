@@ -61,7 +61,7 @@ while cont:
 	if(targetInput == ""):
 		targetX = targetXYZGWAWR[index_X]; #defaultTargetX;
 	else:
-		targetX = int(targetInput);
+		targetX = float(targetInput);
 	targetXYZGWAWR = (targetX, targetXYZGWAWR[1], targetXYZGWAWR[2], targetXYZGWAWR[3], targetXYZGWAWR[4], targetXYZGWAWR[5])
 	
 	# Get Y position
@@ -69,7 +69,7 @@ while cont:
 	if(targetInput == ""):
 		targetY = targetXYZGWAWR[index_Y]; #defaultTargetY;
 	else:
-		targetY = int(targetInput);
+		targetY = float(targetInput);
 	targetXYZGWAWR = (targetXYZGWAWR[0], targetY, targetXYZGWAWR[2], targetXYZGWAWR[3], targetXYZGWAWR[4], targetXYZGWAWR[5])
 	
 	# Perform IK
