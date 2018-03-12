@@ -1,3 +1,6 @@
+# 2017-07-12 by scharette
+# Basic 2D IK example of AL5 + Python (library)
+
 from math import sqrt, atan, acos, fabs
 
 # Define legnth of AL5 sections
