@@ -59,7 +59,7 @@ while cont:
 	# Get X position
 	targetInput = input("X position (last X = " + str(targetXYZGWAWR[index_X]) + ") ? ")
 	if(targetInput == ""):
-		targetX = defaultTargetX;
+		targetX = targetXYZGWAWR[index_X]; #defaultTargetX;
 	else:
 		targetX = int(targetInput);
 	targetXYZGWAWR = (targetX, targetXYZGWAWR[1], targetXYZGWAWR[2], targetXYZGWAWR[3], targetXYZGWAWR[4], targetXYZGWAWR[5])
@@ -67,7 +67,7 @@ while cont:
 	# Get Y position
 	targetInput = input("Y position (last Y = " + str(targetXYZGWAWR[index_Y]) + ") ? ")
 	if(targetInput == ""):
-		targetY = defaultTargetY;
+		targetY = targetXYZGWAWR[index_Y]; #defaultTargetY;
 	else:
 		targetY = int(targetInput);
 	targetXYZGWAWR = (targetXYZGWAWR[0], targetY, targetXYZGWAWR[2], targetXYZGWAWR[3], targetXYZGWAWR[4], targetXYZGWAWR[5])
