@@ -6,6 +6,11 @@ import serial
 
 from lib_al5_2D_IK import al5_2D_IK, al5_moveMotors
 
+# Constants - Speed in µs/s, 4000 is roughly equal to 360°/s or 60 RPM
+#           - A lower speed will most likely be more useful in real use, such as 100 µs/s (~9°/s)
+CST_SPEED_MAX = 4000
+CST_SPEED_DEFAULT = 100
+
 # Create and open a serial port
 sp = serial.Serial('/dev/ttyUSB0', 9600)
 
@@ -34,6 +39,8 @@ index_WA = 4
 index_WR = 5
 targetXYZGWAWR = (targetX, targetY, targetZ, targetG, targetWA, targetWR)
 targetQ = "y"
+motors_SEWBZWrG = (90, 90, 90, 90, 90, 90)
+speed_SEWBZWrG = (CST_SPEED_DEFAULT, CST_SPEED_DEFAULT, CST_SPEED_DEFAULT, CST_SPEED_DEFAULT, CST_SPEED_DEFAULT, CST_SPEED_DEFAULT)
 
 # Set the arm to default centered position (careful of sudden movement)
 print("Default position is " + str(AL5_DefaultPos) + ".")
