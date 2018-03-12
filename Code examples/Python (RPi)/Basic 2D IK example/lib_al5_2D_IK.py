@@ -37,7 +37,7 @@ def ard_map(value, min1, max1, min2, max2):
 def getPulseFromAngle(angle):
 	angle = ard_constrain(angle, CST_ANGLE_MIN, CST_ANGLE_MAX)
 	pulse = ard_map(angle, CST_ANGLE_MIN, CST_ANGLE_MAX, CST_RC_MIN, CST_RC_MAX)
-	return (pulse);
+	return (int(pulse));
 
 #def al5_2D_IK(targetX, targetY, targetZ, targetGrip, targetWAgl, targetWRot):
 def al5_2D_IK(targetXYZGWAWR):
