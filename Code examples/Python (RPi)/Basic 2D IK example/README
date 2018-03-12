@@ -6,3 +6,14 @@ This code performs basic 2D IK for the AL5[A/B/D] robotic platform.
 You can read more about the AL5 series here:
 [EN] http://www.robotshop.com/blog/en/lynxmotion-robotic-arms-15845
 [FR] http://www.robotshop.com/blog/fr/bras-robotiques-lynxmotion-4672
+
+= Updates =
+
+== 2018-03-12 - Speed control added to the example ==
+
+Various small modifications to the code. The mains points are as follows:
+1) (minor)    Added speed control to the example code. You can now specify a default speed for each servomotor channel individually.
+2) (minor)    Fixed code to now accept floats for X/Y target. Allows for better control of end effector position.
+3) (minor)    Fixed code to return only integet pulse values. Otherwise, it may return floats, which the SSC-32U ignore, along with the S parameter!
+4) (trivial)  Changed code to use the last position (X or Y) if enter is pressed with no value given.
+5) (trivial)  Added basic info at the top of the library file that had been forgotten.
